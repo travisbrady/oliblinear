@@ -32,6 +32,8 @@ let () =
     printf "predicted label: %f\n" (Oliblinear.predict m features);
     ()
 ```
+Currently I only need the ability to load a saved model and call `predict`.
+The features array is of the form [|(index, value)|]
 
 
 
