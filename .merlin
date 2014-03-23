@@ -1,0 +1,5 @@
+PKG ctypes
+PKG ctypes.foreign
+S lib
+S lib_test
+B _build/lib

@@ -1,0 +1,8 @@
+*.o
+*.cm*
+*.pyc
+.DS_Store
+*.native
+_build/
+setup.data
+*.log

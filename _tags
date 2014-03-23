@@ -1,0 +1,36 @@
+# OASIS_START
+# DO NOT EDIT (digest: 93e16078c27021253a02c52961f56224)
+# Ignore VCS directories, you can use the same kind of rule outside
+# OASIS_START/STOP if you want to exclude directories that contains
+# useless stuff for the build process
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Library liblinear
+"lib/liblinear.cmxs": use_liblinear
+<lib/liblinear.{cma,cmxa}>: oasis_library_liblinear_cclib
+<lib/liblinear.{cma,cmxa}>: oasis_library_liblinear_dlllib
+<lib/*.ml{,i}>: pkg_ctypes
+<lib/*.ml{,i}>: pkg_ctypes.foreign
+<lib/*.ml{,i}>: pkg_threads
+# Executable test_predict
+"lib_test/test_predict.native": pkg_core
+"lib_test/test_predict.native": pkg_ctypes
+"lib_test/test_predict.native": pkg_ctypes.foreign
+"lib_test/test_predict.native": pkg_ounit
+"lib_test/test_predict.native": pkg_threads
+"lib_test/test_predict.native": use_liblinear
+<lib_test/*.ml{,i}>: pkg_core
+<lib_test/*.ml{,i}>: pkg_ctypes
+<lib_test/*.ml{,i}>: pkg_ctypes.foreign
+<lib_test/*.ml{,i}>: pkg_ounit
+<lib_test/*.ml{,i}>: pkg_threads
+<lib_test/*.ml{,i}>: use_liblinear
+# OASIS_STOP

@@ -1,0 +1,31 @@
+OASISFormat: 0.4
+Name:        liblinear
+Version:     0.1
+Synopsis:    Minimal OCaml bindings to Liblinear
+Authors:     Travis Brady
+License:     Apache-2.0
+Plugins:     META (0.3), DevFiles (0.3)
+
+Library liblinear
+  Path:             lib
+  FindlibName:      liblinear
+  BuildTools:       ocamlbuild
+  BuildDepends:     ctypes, ctypes.foreign, threads
+  CompiledObject:   best
+  Modules:          Liblinear, Oliblinear
+  DllLib:           -llinear
+  if system(linux)
+    CCLib:          -Xlinker --no-as-needed -llinear
+  else
+    CCLib:          -llinear
+
+Executable test_predict
+  Path:             lib_test
+  BuildTools:       ocamlbuild
+  BuildDepends:     liblinear, ounit, core, threads
+  #Build$:           flag(tests)
+  CompiledObject:   native
+  MainIs:           test_predict.ml
+  Install:          false
+
+

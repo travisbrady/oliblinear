@@ -1,0 +1,12 @@
+# OASIS_START
+# DO NOT EDIT (digest: 07f791f57f98c6f0f08595ae5ab2365d)
+version = "0.1"
+description = "Minimal OCaml bindings to Liblinear"
+requires = "ctypes ctypes.foreign threads"
+archive(byte) = "liblinear.cma"
+archive(byte, plugin) = "liblinear.cma"
+archive(native) = "liblinear.cmxa"
+archive(native, plugin) = "liblinear.cmxs"
+exists_if = "liblinear.cma"
+# OASIS_STOP
+
