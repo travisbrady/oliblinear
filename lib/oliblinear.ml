@@ -29,3 +29,12 @@ let predict m fns =
     (fnp +@ len) <-@ nb;
     L.predict m fnp
 
+
+let get_nr_feature = Liblinear.get_nr_feature
+let get_nr_class = Liblinear.get_nr_class
+
+let get_labels m =
+    let num_classes = get_nr_class m in
+    let _labels = Ctypes.allocate_n Ctypes.int ~count:num_classes in
+    let _ = Liblinear.get_labels m _labels in
+    Ctypes.Array.to_list (Ctypes.Array.from_ptr _labels num_classes)

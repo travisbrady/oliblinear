@@ -65,57 +65,24 @@ let () = seal model
 
 (*let from = Dl.(dlopen ~filename:"liblinear/liblinear.so.1" ~flags:[RTLD_NOW])*)
 
-(*
-let train = foreign ~from "train" (ptr problem @-> ptr parameter @-> returning (ptr model))
-let predict = foreign ~from "predict" (ptr model @-> ptr feature_node @-> returning double)
-
-let save_model = foreign ~from "save_model" (string @-> ptr model @-> returning int)
-let load_model = foreign ~from "load_model" (string @-> returning (ptr model))
-
-let get_nr_feature = foreign ~from "get_nr_feature" (ptr model @-> returning int)
-let get_nr_class = foreign ~from "get_nr_class" (ptr model @-> returning int)
-
-let free_model_content = foreign ~from "free_model_content" (ptr model @-> returning void)
-let free_and_destroy_model = foreign ~from "free_and_destroy_model" (ptr (ptr model) @-> returning void)
-let destroy_param = foreign ~from "destroy_param" (ptr parameter @-> returning void)
-*)
 let train = foreign "train" (ptr problem @-> ptr parameter @-> returning (ptr model))
+let cross_validation = foreign "cross_validation" (ptr problem @-> ptr parameter @-> ptr double @-> returning void)
+
+let predict_values = foreign "predict_values" (ptr model @-> ptr feature_node @-> ptr double @-> returning double)
 let predict = foreign "predict" (ptr model @-> ptr feature_node @-> returning double)
+let predict_probability = foreign "predict_probability" (ptr model @-> ptr feature_node @-> ptr double @-> returning double)
 
 let save_model = foreign "save_model" (string @-> ptr model @-> returning int)
 let load_model = foreign "load_model" (string @-> returning (ptr model))
 
 let get_nr_feature = foreign "get_nr_feature" (ptr model @-> returning int)
 let get_nr_class = foreign "get_nr_class" (ptr model @-> returning int)
+let get_labels = foreign "get_labels" (ptr model @-> ptr int @-> returning void)
 
 let free_model_content = foreign "free_model_content" (ptr model @-> returning void)
 let free_and_destroy_model = foreign "free_and_destroy_model" (ptr (ptr model) @-> returning void)
 let destroy_param = foreign "destroy_param" (ptr parameter @-> returning void)
 
-(*
-let no_bias =
-    let fn = make feature_node in
-    let () = begin
-        setf fn index (-1);
-        setf fn value (-1.0)
-    end in
-    fn
+let check_parameter = foreign "check_parameter" (ptr problem @-> ptr parameter @-> returning string)
+let check_probability_model = foreign "check_probability_model" (ptr model @-> returning int)
 
-let hack m fns =
-    let len = Core.Std.Array.length fns in
-    let fnp = allocate_n feature_node ~count:(len + 1) in
-
-    for i = 0 to (len - 1) do
-        let (x, y) = Core.Std.Array.get fns i in
-        let ft = make feature_node in
-        let () = begin
-            setf ft index x;
-            setf ft value y
-        end in
-        (fnp +@ i) <-@ ft
-    done;
-    let nb = no_bias in
-    (fnp +@ len) <-@ nb;
-    predict m fnp
-
-    *)

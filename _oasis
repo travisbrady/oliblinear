@@ -1,10 +1,13 @@
-OASISFormat: 0.4
-Name:        liblinear
-Version:     0.1
-Synopsis:    Minimal OCaml bindings to Liblinear
-Authors:     Travis Brady
-License:     Apache-2.0
-Plugins:     META (0.3), DevFiles (0.3)
+OASISFormat:        0.4
+Name:               liblinear
+Version:            0.1
+Synopsis:           Minimal OCaml bindings to Liblinear
+Authors:            Travis Brady
+License:            Apache-2.0
+LicenseFile:        LICENSE.txt
+Plugins:            META (0.4), DevFiles (0.4), StdFiles (0.4)
+XStdFilesAUTHORS:   false
+XStdFilesREADME:    false
 
 Library liblinear
   Path:             lib
@@ -13,7 +16,6 @@ Library liblinear
   BuildDepends:     ctypes, ctypes.foreign, threads
   CompiledObject:   best
   Modules:          Liblinear, Oliblinear
-  DllLib:           -llinear
   if system(linux)
     CCLib:          -Xlinker --no-as-needed -llinear
   else
