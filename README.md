@@ -24,15 +24,21 @@ Example from examples/simple.ml:
 ```ocaml
 open Printf
 
+let fn = "heart_scale.model"
+
 let () =
-    let fn = "heart_scale.model" in
     let m = Liblinear.load_model fn in
-    printf "fts: %d\n" (Liblinear.get_nr_feature m);
-    let features = [|(1, 0.5)|] in
+    printf "num_features: %d\n" (Liblinear.get_nr_feature m);
+    printf "num_classes: %d\n" (Liblinear.get_nr_class m);
+
+    let features = [|(1, 1.0); (3, 1.0)|] in
     printf "predicted label: %f\n" (Oliblinear.predict m features);
-    ()
+
+    let labels = Oliblinear.get_labels m in
+    printf "Show Labels\n";
+    List.iter (fun x -> printf "Label: %d\n" x) labels
 ```
-Currently I only need the ability to load a saved model and call `predict`.
+Currently I only need the ability to load a saved model and call `predict`, but support for `train`, `cross_validation` and the rest are forthcoming.
 The features array is of the form [|(index, value)|]
 
 Note
