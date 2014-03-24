@@ -21,13 +21,24 @@ Library liblinear
   else
     CCLib:          -llinear
 
-Executable test_predict
+Executable test_oliblinear
   Path:             lib_test
   BuildTools:       ocamlbuild
-  BuildDepends:     liblinear, ounit, core, threads
-  #Build$:           flag(tests)
-  CompiledObject:   native
-  MainIs:           test_predict.ml
+  BuildDepends:     liblinear, core, ounit, threads
+  Build$:           flag(tests)
+  CompiledObject:   best
+  MainIs:           test_oliblinear.ml
   Install:          false
 
+Test test_oliblinear
+  Run$:             flag(tests)
+  Command:          $test_oliblinear
+  WorkingDirectory: lib_test
 
+Executable simple
+  Path:             examples
+  BuildTools:       ocamlbuild
+  BuildDepends:     liblinear, threads
+  CompiledObject:   best
+  MainIs:           simple.ml
+  Install:          false

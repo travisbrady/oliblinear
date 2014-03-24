@@ -4,6 +4,8 @@ module L = Liblinear
 let (+@) = Ctypes.(+@)
 let (<-@) = Ctypes.(<-@)
 
+let load_model = L.load_model
+
 let no_bias =
     let fn = Ctypes.make L.feature_node in
     let () = begin
