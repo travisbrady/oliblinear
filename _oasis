@@ -24,7 +24,7 @@ Library liblinear
 Executable test_oliblinear
   Path:             lib_test
   BuildTools:       ocamlbuild
-  BuildDepends:     liblinear, core, ounit, threads
+  BuildDepends:     liblinear, core, oUnit, threads
   Build$:           flag(tests)
   CompiledObject:   best
   MainIs:           test_oliblinear.ml
