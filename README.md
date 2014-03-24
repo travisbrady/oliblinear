@@ -20,7 +20,7 @@ $ make install
 
 Usage:
 ======
-Example from lib_test/test_predict.ml:
+Example from examples/simple.ml:
 ```ocaml
 open Printf
 
