@@ -7,7 +7,11 @@ let (<-@) = Ctypes.(<-@)
 let (!@) = Ctypes.(!@)
 
 let save_model = L.save_model
-let load_model = L.load_model
+let load_model fn =
+    match Sys.file_exists fn with
+    | `Yes -> L.load_model fn
+    | _ -> raise (Sys_error ("File: " ^ fn ^ " does not exist"))
+
 let get_nr_feature = L.get_nr_feature
 let get_nr_class = L.get_nr_class
 let free_model_content = L.free_model_content
@@ -54,6 +58,12 @@ let predict m fns =
     (fnp +@ len) <-@ bias_term;
     L.predict m fnp
 
+let predict_list m fns =
+    let len = List.length fns in
+    let fnp = feature_node_array fns in
+    let bias_term = bias_feature_node m in
+    (fnp +@ len) <-@ bias_term;
+    L.predict m fnp
 
 let get_labels m =
     let num_classes = get_nr_class m in
