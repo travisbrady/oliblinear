@@ -1,5 +1,6 @@
 PKG ctypes
 PKG ctypes.foreign
+PKG core
 S lib
 S lib_test
 B _build/lib
