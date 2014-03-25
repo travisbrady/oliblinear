@@ -10,7 +10,11 @@ Plugins:            META (0.4), DevFiles (0.4), StdFiles (0.4)
 XStdFilesAUTHORS:   false
 XStdFilesREADME:    false
 
-PreBuildCommand:    mkdir -p _build/lib && cc -shared -o _build/lib/dlllinear_stubs.so -llinear
+if system(linux)
+    PreInstallCommand:  cc -shared -o _build/lib/dlllinear_stubs.so -Xlinker --no-as-needed -Wl -llinear
+else
+    PreInstallCommand:  cc -shared -o _build/lib/dlllinear_stubs.so -llinear
+
 PostInstallCommand: ocamlfind install -add liblinear -dll _build/lib/dlllinear_stubs.so
 
 Library liblinear
