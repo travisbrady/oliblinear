@@ -1,0 +1,19 @@
+OASISFormat:        0.4
+Name:               liblinear_test
+Version:            0.1
+Synopsis:           test liblinear
+Authors:            Travis Brady
+License:            Apache-2.0
+LicenseFile:        LICENSE.txt
+Plugins:            META (0.4), DevFiles (0.4), StdFiles (0.4)
+XStdFilesAUTHORS:   false
+XStdFilesREADME:    false
+
+Executable simple
+  Path:             .
+  BuildTools:       ocamlbuild
+  BuildDepends:     core, oliblinear, ctypes, ctypes.foreign, threads
+  CompiledObject:   best
+  Custom:           true
+  MainIs:           simple.ml
+  Install:          false
