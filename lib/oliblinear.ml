@@ -23,16 +23,17 @@ let check_probability_model = L.check_probability_model
 let make_feature_node idx value =
     let fn = Ctypes.make L.feature_node in
     let () = begin
-        Ctypes.setf fn L.index (-1);
-        Ctypes.setf fn L.value (-1.0)
+        Ctypes.setf fn L.index idx;
+        Ctypes.setf fn L.value value
     end in
     fn
 
 let feature_node_array lst feature_max =
-    (*List.map lst ~f:(fun (x, y) -> make_feature_node x y)*)
     List.filter_map lst ~f:(fun (x, y) ->
         if x <= feature_max then Some (make_feature_node x y) else None
-    ) |> Ctypes.Array.of_list L.feature_node
+    )
+    |> (fun x -> List.concat [x; [make_feature_node (-1) 0.0; make_feature_node (-1) 0.0]])
+    |> Ctypes.Array.of_list L.feature_node
     |> Ctypes.Array.start
 
 let bias_feature_node m =
