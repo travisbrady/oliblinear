@@ -15,39 +15,39 @@ if system(linux)
 else
     PreInstallCommand:  cc -shared -o _build/lib/dlllinear_stubs.so -llinear
 
-PostInstallCommand: ocamlfind install -add liblinear -dll _build/lib/dlllinear_stubs.so
-
-Library liblinear
-  Path:             lib
-  FindlibName:      liblinear
-  BuildTools:       ocamlbuild
-  BuildDepends:     ctypes, ctypes.foreign, core, threads
-  CompiledObject:   best
-  Modules:          Liblinear, Oliblinear
-  DllLib:           -llinear_stubs
+Library oliblinear
+  Path:                 lib
+  FindlibName:          oliblinear
+  BuildTools:           ocamlbuild
+  BuildDepends:         ctypes, ctypes.foreign, core, threads
+  CompiledObject:       best
+  Modules:              Liblinear, Oliblinear
+  CSources:             linear.c
+  DllLib:               -llinear_stubs
   if system(linux)
-    CCLib:          -Xlinker --no-as-needed -llinear
+    CCLib:              -Xlinker --no-as-needed -llinear
   else
-    CCLib:          -llinear
+    CCLib:              -llinear
 
 Executable test_oliblinear
-  Path:             lib_test
-  BuildTools:       ocamlbuild
-  BuildDepends:     liblinear, core, oUnit, threads
-  Build$:           flag(tests)
-  CompiledObject:   best
-  MainIs:           test_oliblinear.ml
-  Install:          false
+  Path:                 lib_test
+  BuildTools:           ocamlbuild
+  BuildDepends:         oliblinear, core, oUnit, threads
+  Build$:               flag(tests)
+  CompiledObject:       best
+  MainIs:               test_oliblinear.ml
+  Install:              false
 
 Test test_oliblinear
-  Run$:             flag(tests)
-  Command:          $test_oliblinear
-  WorkingDirectory: lib_test
+  Run$:                 flag(tests)
+  Command:              $test_oliblinear
+  WorkingDirectory:     lib_test
 
 Executable simple
-  Path:             examples
-  BuildTools:       ocamlbuild
-  BuildDepends:     liblinear, threads
-  CompiledObject:   best
-  MainIs:           simple.ml
-  Install:          false
+  Path:                 examples
+  BuildTools:           ocamlbuild
+  BuildDepends:         oliblinear, threads
+  CompiledObject:       best
+  MainIs:               simple.ml
+  Install:              false
+

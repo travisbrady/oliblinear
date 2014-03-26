@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: 8b09362f744ba76a14d486eca77775d5) *)
+(* DO NOT EDIT (digest: ee514905c28821f1699be7ca5e6ad178) *)
 module OASISGettext = struct
 (* # 22 "src/oasis/OASISGettext.ml" *)
 
@@ -580,11 +580,11 @@ end
 open Ocamlbuild_plugin;;
 let package_default =
   {
-     MyOCamlbuildBase.lib_ocaml = [("liblinear", ["lib"], [])];
-     lib_c = [];
+     MyOCamlbuildBase.lib_ocaml = [("oliblinear", ["lib"], [])];
+     lib_c = [("oliblinear", "lib", [])];
      flags =
        [
-          (["oasis_library_liblinear_cclib"; "link"],
+          (["oasis_library_oliblinear_cclib"; "link"],
             [
                (OASISExpr.EBool true, S []);
                (OASISExpr.ETest ("system", "linux"),
@@ -600,7 +600,7 @@ let package_default =
                (OASISExpr.ENot (OASISExpr.ETest ("system", "linux")),
                  S [A "-cclib"; A "-llinear"])
             ]);
-          (["oasis_library_liblinear_cclib"; "ocamlmklib"; "c"],
+          (["oasis_library_oliblinear_cclib"; "ocamlmklib"; "c"],
             [
                (OASISExpr.EBool true, S []);
                (OASISExpr.ETest ("system", "linux"),
@@ -608,7 +608,7 @@ let package_default =
                (OASISExpr.ENot (OASISExpr.ETest ("system", "linux")),
                  S [A "-llinear"])
             ]);
-          (["oasis_library_liblinear_dlllib"; "link"; "byte"],
+          (["oasis_library_oliblinear_dlllib"; "link"; "byte"],
             [(OASISExpr.EBool true, S [A "-dllib"; P "-llinear_stubs"])])
        ];
      includes = [("lib_test", ["lib"]); ("examples", ["lib"])]

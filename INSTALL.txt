@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: e80508e445730dc4da5b35ddeeb66345) *)
+(* DO NOT EDIT (digest: cce067e9cc883ee31d97d1a59b476ced) *)
 This is the INSTALL file for the liblinear distribution.
 
 This package uses OASIS to generate its build system. See section OASIS for
@@ -11,8 +11,8 @@ Dependencies
 In order to compile this package, you will need:
 * ocaml
 * findlib
-* ctypes for library liblinear
-* core for library liblinear, executable test_oliblinear
+* ctypes for library oliblinear
+* core for library oliblinear, executable test_oliblinear
 * oUnit for executable test_oliblinear
 
 Installing
