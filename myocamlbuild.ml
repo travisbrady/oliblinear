@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: ee514905c28821f1699be7ca5e6ad178) *)
+(* DO NOT EDIT (digest: 1aa3a984bae8c6bfc89d7109acb493c7) *)
 module OASISGettext = struct
 (* # 22 "src/oasis/OASISGettext.ml" *)
 
@@ -581,7 +581,7 @@ open Ocamlbuild_plugin;;
 let package_default =
   {
      MyOCamlbuildBase.lib_ocaml = [("oliblinear", ["lib"], [])];
-     lib_c = [("oliblinear", "lib", [])];
+     lib_c = [];
      flags =
        [
           (["oasis_library_oliblinear_cclib"; "link"],
@@ -609,7 +609,7 @@ let package_default =
                  S [A "-llinear"])
             ]);
           (["oasis_library_oliblinear_dlllib"; "link"; "byte"],
-            [(OASISExpr.EBool true, S [A "-dllib"; P "-llinear_stubs"])])
+            [(OASISExpr.EBool true, S [A "-dllib"; P "-llinear"])])
        ];
      includes = [("lib_test", ["lib"]); ("examples", ["lib"])]
   }

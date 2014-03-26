@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 17812891227c5b71c14ae8f19ba50f23)
+# DO NOT EDIT (digest: 7abbaa6d968ad8c6de5a00d371d6be4b)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -16,20 +16,11 @@
 # Library oliblinear
 "lib/oliblinear.cmxs": use_oliblinear
 <lib/oliblinear.{cma,cmxa}>: oasis_library_oliblinear_cclib
-"lib/liboliblinear_stubs.lib": oasis_library_oliblinear_cclib
-"lib/dlloliblinear_stubs.dll": oasis_library_oliblinear_cclib
-"lib/liboliblinear_stubs.a": oasis_library_oliblinear_cclib
-"lib/dlloliblinear_stubs.so": oasis_library_oliblinear_cclib
 <lib/oliblinear.{cma,cmxa}>: oasis_library_oliblinear_dlllib
-<lib/oliblinear.{cma,cmxa}>: use_liboliblinear_stubs
 <lib/*.ml{,i}>: pkg_core
 <lib/*.ml{,i}>: pkg_ctypes
 <lib/*.ml{,i}>: pkg_ctypes.foreign
 <lib/*.ml{,i}>: pkg_threads
-"lib/linear.c": pkg_core
-"lib/linear.c": pkg_ctypes
-"lib/linear.c": pkg_ctypes.foreign
-"lib/linear.c": pkg_threads
 # Executable test_oliblinear
 <lib_test/test_oliblinear.{native,byte}>: pkg_core
 <lib_test/test_oliblinear.{native,byte}>: pkg_ctypes

@@ -10,11 +10,6 @@ Plugins:            META (0.4), DevFiles (0.4), StdFiles (0.4)
 XStdFilesAUTHORS:   false
 XStdFilesREADME:    false
 
-if system(linux)
-    PreInstallCommand:  cc -shared -o _build/lib/dlllinear_stubs.so -Xlinker --no-as-needed -Wl -llinear
-else
-    PreInstallCommand:  cc -shared -o _build/lib/dlllinear_stubs.so -llinear
-
 Library oliblinear
   Path:                 lib
   FindlibName:          oliblinear
@@ -22,8 +17,8 @@ Library oliblinear
   BuildDepends:         ctypes, ctypes.foreign, core, threads
   CompiledObject:       best
   Modules:              Liblinear, Oliblinear
-  CSources:             linear.c
-  DllLib:               -llinear_stubs
+  DllLib:               -llinear
+  DllLib:               -llinear
   if system(linux)
     CCLib:              -Xlinker --no-as-needed -llinear
   else
