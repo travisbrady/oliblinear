@@ -28,9 +28,11 @@ let make_feature_node idx value =
     end in
     fn
 
-let feature_node_array lst =
-    List.map lst ~f:(fun (x, y) -> make_feature_node x y)
-    |> Ctypes.Array.of_list L.feature_node
+let feature_node_array lst feature_max =
+    (*List.map lst ~f:(fun (x, y) -> make_feature_node x y)*)
+    List.filter_map lst ~f:(fun (x, y) ->
+        if x <= feature_max then Some (make_feature_node x y) else None
+    ) |> Ctypes.Array.of_list L.feature_node
     |> Ctypes.Array.start
 
 let bias_feature_node m =
@@ -59,8 +61,9 @@ let predict m fns =
     L.predict m fnp
 
 let predict_list m fns =
+    let nrf = get_nr_feature m in
     let len = List.length fns in
-    let fnp = feature_node_array fns in
+    let fnp = feature_node_array fns nrf in
     let bias_term = bias_feature_node m in
     (fnp +@ len) <-@ bias_term;
     L.predict m fnp
